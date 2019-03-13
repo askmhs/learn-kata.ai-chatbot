@@ -1,0 +1,145 @@
+active: true
+intents:
+    orderIntent:
+        type: text
+        initial: true
+        fallback: false
+        classifier:
+            nlu: NLUIntent
+            match: order
+    reenter:
+        type: command
+        condition: 'command == "reenter"'
+    pizzaChosenIntent:
+        type: data
+        condition: 'payload.type == "pizza"'
+    pizzaQuantity:
+        type: text
+        classifier:
+            nlu: quantity
+        attributes:
+            quantity:
+                nlu: quantity
+    yes:
+        type: text
+        classifier:
+            nlu: yesno
+            match: yes
+    no:
+        type: text
+        classifier:
+            nlu: yesno
+            match: no
+    orderCancelledIntent:
+        type: text
+        classifier:
+            nlu: operation
+            match: cancelOrder
+states:
+    cancelOrder:
+        end: true
+        transitions: {}
+        float:
+            condition: 'intent == "orderCancelledIntent"'
+        action: cancelOrderCommand
+    init:
+        initial: true
+        transitions:
+            showPizza:
+                fallback: true
+                condition: 'intent == "orderIntent"'
+    showPizza:
+        transitions:
+            askQuantity:
+                condition: 'intent == "pizzaChosenIntent"'
+                mapping:
+                    context.pizza: payload.pizza
+            showPizza:
+                fallback: true
+        action:
+            - name: showPizza
+            - name: askOptions
+    askQuantity:
+        transitions:
+            confirmOrder:
+                condition: 'intent == "pizzaQuantity"'
+                mapping:
+                    context.quantity: attributes.quantity
+                    context.answer: 'null'
+            askQuantity:
+                fallback: true
+        action: askQuantity
+    confirmOrder:
+        transitions:
+            done:
+                fallback: true
+        transit:
+            context.answer: 'intent'
+        action: askConfirmation
+    done:
+        transitions: {}
+        action:
+            -   name: sayThanks
+                condition: 'context.answer == "yes"'
+            -   name: sayCancel
+                condition: 'context.answer == "no"'
+        end: true
+actions:
+    cancelOrderCommand:
+        end: true
+        transitions: {}
+        type: command
+        options:
+            command: cancelOrderCmd
+    showPizza:
+        type: template
+        options:
+            type: carousel
+            items:
+                -   title: Tuna Melt
+                    text: 'Irisan daging ikan tuna, butiran jagung, saus mayonnaise.'
+                    thumbnailImageUrl: 'https://s3-ap-southeast-1.amazonaws.com/pizzahutid/dinein/menu/PIZZA/PIZZA_v1/PAN%20PIZZA/Tuna%20Melt.png'
+                    actions:
+                        -   type: postback
+                            label: 'Pilih'
+                            payload:
+                                type: pizza
+                                pizza: 'Tuna Melt'
+                -   title: Frankfurter BBQ
+                    text: 'Sosis sapi Frankfurter, potongan daging sapi, honey BBQ, mustard, keju Mozarella.'
+                    thumbnailImageUrl: 'https://s3-ap-southeast-1.amazonaws.com/pizzahutid/dinein/menu/PIZZA/PIZZA_v1/PAN%20PIZZA/Frankfurter.png'
+                    actions:
+                        -   type: postback
+                            label: 'Pilih'
+                            payload:
+                                type: pizza
+                                pizza: 'Frankfurter BBQ'
+                -   title: Pepperoni
+                    text: 'Pizza dengan topping pepperoni sapi, saus tomat, dan keju mozzarella.'
+                    thumbnailImageUrl: 'https://s3-ap-southeast-1.amazonaws.com/pizzahutid/dinein/menu/PIZZA/PIZZA_v1/PAN%20PIZZA/Pepperoni.png'
+                    actions:
+                        -   type: postback
+                            label: 'Pilih'
+                            payload:
+                                type: pizza
+                                pizza: 'Papperoni'
+    askOptions:
+        type: text
+        options:
+            text: 'Silahkan pilih menu yang tersedia'
+    askQuantity:
+        type: text
+        options:
+            text: 'Berapa banyak pizza yang akan Anda pesan?'
+    askConfirmation:
+        type: text
+        options:
+            text: 'Apakah Anda yakin ingin memesan $(context.quantity) $(context.pizza) pizza?'
+    sayThanks:
+        type: text
+        options:
+            text: 'Terimakasih atas pesanan Anda :)'
+    sayCancel:
+        type: text
+        options:
+            text: 'Pesanan Anda telah dibatalkan. Terimakasih telah mengunjungi toko kami :)'

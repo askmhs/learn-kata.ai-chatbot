@@ -1,0 +1,13 @@
+name: askmhs21
+tag: null
+projectName: floating_state
+flows:
+    fallback: $include(./flows/fallback.yml)
+    greeting: $include(./flows/greeting.yml)
+    order: $include(./flows/order.yml)
+    operation: $include(./flows/operation.yml)
+nlus: $include(./nlus/nlu.yml)
+methods: {}
+config:
+    maxRecursion: 10
+author: Muhammad Harits Syaifulloh (@askmhs)

@@ -1,0 +1,20 @@
+active: true
+fallback: true
+intents:
+    fallback:
+        type: text
+        initial: false
+        fallback: true
+states:
+    init:
+        action: sayDontUnderstand
+        transitions:
+            init:
+                fallback: true
+        initial: true
+        end: true
+actions:
+    sayDontUnderstand:
+        type: text
+        options:
+            text: "Sorry, I don't undersatnd :("

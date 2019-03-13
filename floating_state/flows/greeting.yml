@@ -1,0 +1,29 @@
+active: true
+intents:
+    startBotCommand:
+        initial: true
+        type: command
+        condition: 'content == "startBotCommand"'
+    greetingIntent:
+        type: text
+        initial: true
+        fallback: false
+        classifier:
+            nlu: NLUIntent
+            match: greeting
+states:
+    init:
+        initial: true
+        transitions:
+            greeting:
+                fallback: true
+                condition: 'intent == "greetingIntent" || intent == "startBotCommand"'
+    greeting:
+        end: true
+        action: showGreeting
+        transitions: {}
+actions:
+    showGreeting:
+        type: text
+        options:
+            text: "Halo, saya Nisa' asisten virtual di ASKMHS Pizza Store. Apakah ada yang bisa saya bantu? :)"

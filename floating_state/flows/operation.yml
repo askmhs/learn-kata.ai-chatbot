@@ -1,0 +1,29 @@
+active: true
+intents:
+    cancelOrderCommand:
+        type: command
+        initial: true
+        fallback: false
+        condition: 'content == "cancelOrderCmd"'
+states:
+    init:
+        initial: true
+        transitions:
+            cancelOrder:
+                fallback: true
+                condition: 'intent == "cancelOrderCommand"'
+    cancelOrder:
+        end: true
+        transitions: {}
+        action:
+            - name: showCancelInformation
+            - name: toMainMenu
+actions:
+    showCancelInformation:
+        type: text
+        options:
+            text: "Anda telah membatalkan proses order :-)"
+    toMainMenu:
+        type: command
+        options:
+            command: startBotCommand
