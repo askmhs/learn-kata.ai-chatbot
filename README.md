@@ -1,1 +1,1 @@
-# learcn-kata.ai-chatbot
+# Learn Kata.ai chatbot platform
