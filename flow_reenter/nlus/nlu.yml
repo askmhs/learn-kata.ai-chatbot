@@ -1,0 +1,50 @@
+NLUIntent:
+    type: keyword
+    options:
+        keywords:
+            greeting:
+                - hi
+                - hai
+                - halo
+                - hello
+            order:
+                - menu
+                - pizza
+                - order
+                - beli
+                - pesan
+                - pesen
+                - order pizza
+                - beli pizza
+                - pesan pizza
+                - pesen pizza
+yesno:
+    type: keyword
+    options:
+        keywords:
+            yes:
+                - ya
+                - iya
+                - betul
+                - benar
+                - ok
+                - oke
+                - okay
+                - yes
+                - iyes
+            no:
+                - no
+                - tidak
+                - salah
+quantity:
+    type: regex
+    options:
+        regex: '[0-9]{1,2}'
+operation:
+    type: keyword
+    options:
+        keywords:
+            cancelOrder:
+                - cancel
+                - batal
+                - batalkan
