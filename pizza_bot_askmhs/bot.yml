@@ -1,0 +1,11 @@
+name: askmhs21
+tag: null
+projectName: pizza_bot_askmhs
+flows:
+    fallback: $include(./flows/fallback.yml)
+    order: $include(./flows/order.yml)
+nlus: $include(./nlus/nlu.yml)
+methods: {}
+config:
+    maxRecursion: 10
+author: Muhammad Harits Syaifulloh (@askmhs)
