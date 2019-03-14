@@ -1,0 +1,16 @@
+name: askmhs21
+tag: null
+projectName: flow_reenter
+flows:
+    fallback: $include(./flows/fallback.yml)
+    greeting: $include(./flows/greeting.yml)
+    order: $include(./flows/order.yml)
+    operation: $include(./flows/operation.yml)
+nlus: $include(./nlus/nlu.yml)
+methods:
+    pizzaToLowerCase(ctx):
+        code: $include(scripts/PizzaToLowerCase.js)
+        entry: pizzaToLowerCase
+config:
+    maxRecursion: 10
+author: Muhammad Harits Syaifulloh (@askmhs)
