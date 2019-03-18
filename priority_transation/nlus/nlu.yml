@@ -1,0 +1,75 @@
+NLUIntent:
+    type: keyword
+    options:
+        keywords:
+            greeting:
+                - hi
+                - hai
+                - halo
+                - hello
+            order:
+                - menu
+                - pizza
+                - order
+                - beli
+                - pesan
+                - pesen
+                - order pizza
+                - beli pizza
+                - pesan pizza
+                - pesen pizza
+yesno:
+    type: keyword
+    options:
+        keywords:
+            yes:
+                - ya
+                - iya
+                - betul
+                - benar
+                - ok
+                - oke
+                - okay
+                - yes
+                - iyes
+            no:
+                - no
+                - bukan
+                - tidak
+                - salah
+            both:
+                - ya
+                - iya
+                - betul
+                - benar
+                - ok
+                - oke
+                - okay
+                - yes
+                - iyes
+                - no
+                - bukan
+                - tidak
+                - salah
+quantity:
+    type: regex
+    options:
+        regex: '[0-9]{1,2}'
+operation:
+    type: keyword
+    options:
+        keywords:
+            cancelOrder:
+                - cancel
+                - batal
+                - batalkan
+                - g jadi
+                - ga jadi
+                - gak jadi
+                - tidak jadi
+                - ndak jadi
+                - nda jadi
+stringInput:
+    type: regex
+    options:
+        regex: '[a-z0-9]{6,}'
