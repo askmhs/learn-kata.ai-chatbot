@@ -1,0 +1,3 @@
+pizzaToLowerCase(ctx):
+    code: "./../scripts/PizzaToLowerCase.js"
+    entry: pizzaToLowerCase

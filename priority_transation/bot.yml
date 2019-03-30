@@ -7,10 +7,7 @@ flows:
     order: $include(./flows/order.yml)
     operation: $include(./flows/operation.yml)
 nlus: $include(./nlus/nlu.yml)
-methods:
-    pizzaToLowerCase(ctx):
-        code: $include(scripts/PizzaToLowerCase.js)
-        entry: pizzaToLowerCase
+methods: $include(./methods/methods.yml)
 config:
     maxRecursion: 3
 author: Muhammad Harits Syaifulloh (@askmhs)

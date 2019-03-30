@@ -1,0 +1,40 @@
+active: true
+fallback: false
+intents:
+    reenter:
+        type: command
+        condition: "content == 'reenter'"
+    greeting:
+        initial: true
+        type: text
+        condition: "content == 'halo' || content == 'hi'"
+    profileName:
+        type: text
+        condition: "content == 'nama kamu siapa?'"
+states:
+    init:
+        initial: true
+        transitions:
+            greetingResponse:
+                fallback: true
+                condition: "intent == 'greeting'"
+    greetingResponse:
+        action: showGreeting
+        transitions:
+            responseName:
+                condition: "intent == 'profileName'"
+            greetingResponse:
+                fallback: true
+    responseName:
+        end: true
+        action: showName
+        transitions: {}
+actions:
+    showGreeting:
+        type: text
+        options:
+            text: "Halo, selamat datang di kota ASKMHS :-)"
+    showName:
+        type: text
+        options:
+            text: "Namaku, jessica lauw :-)"

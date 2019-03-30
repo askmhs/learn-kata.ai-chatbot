@@ -1,0 +1,11 @@
+name: askmhs_simple_bot
+tag: null
+projectName: askmhs_simple_bot
+flows:
+    fallback: $include(./flows/fallback.yml)
+    greeting: $include(./flows/greeting.yml)
+nlus: {}
+methods: {}
+config:
+    maxRecursion: 10
+author: Muhammad Harits Syaifulloh (@askmhs)
