@@ -16,3 +16,18 @@ keywordNLU:
                 - nama kamu
                 - nama siapa
                 - jeneng
+            lanjut:
+                - g
+                - gak
+                - ga
+                - kagak
+                - kaga
+                - tidak
+                - nggak
+            tolak:
+                - y
+                - ya
+                - iya
+                - yes
+                - ada
+                - pasti

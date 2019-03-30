@@ -8,12 +8,12 @@ intents:
         initial: true
         type: text
         classifier:
-            nlu: KeywordNLU
+            nlu: keywordNLU
             match: greeting
     profileName:
         type: text
         classifier:
-            nlu: KeywordNLU
+            nlu: keywordNLU
             match: name
 states:
     init:
@@ -31,7 +31,9 @@ states:
                 fallback: true
     responseName:
         end: true
-        action: showName
+        action:
+            - name: showName
+            - name: toPedekateCommand
         transitions: {}
 actions:
     showGreeting:
@@ -42,3 +44,7 @@ actions:
         type: text
         options:
             text: "Namaku, jessica lauw :-)"
+    toPedekateCommand:
+        type: command
+        options:
+            command: startPedekateCommand

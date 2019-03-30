@@ -1,0 +1,55 @@
+active: true
+fallback: false
+intents:
+    reenter:
+        type: command
+        condition: "content == 'reenter'"
+    pedekateIntent:
+        initial: true
+        type: command
+        condition: "content == 'startPedekateCommand'"
+    adaYangMarahIntent:
+        type: text
+        classifier:
+            nlu: keywordNLU
+            match: tolak
+    gakAdaYangMarahIntent:
+        type: text
+        classifier:
+            nlu: keywordNLU
+            match: lanjut
+states:
+    init:
+        initial: true
+        transitions:
+            confirmStatus:
+                fallback: true
+                condition: "intent == 'pedekateIntent'"
+    confirmStatus:
+        action: confirmRelationshipStatus
+        transitions:
+            adaYangMarah:
+                condition: "intent == 'adaYangMarahIntent'"
+            gakAdaYangMarah:
+                condition: "intent == 'gakAdaYangMarahIntent'"
+            confirmStatus:
+                fallback: true
+    adaYangMarah:
+        end: true
+        action: saySorry
+    gakAdaYangMarah:
+        end: true
+        action: ajakNikah
+actions:
+    confirmRelationshipStatus:
+        type: text
+        options:
+            text: "Kalo aku chat kamu ada yang marah gak?"
+    saySorry:
+        type: text
+        options:
+            text: "Oh baiklah, maaf mengganggu :-)"
+    ajakNikah:
+        type: text
+        options:
+            text: "Hmmm, gimana kalo kita nikah aja :-D"

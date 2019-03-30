@@ -4,6 +4,7 @@ projectName: askmhs_simple_bot
 flows:
     fallback: $include(./flows/fallback.yml)
     greeting: $include(./flows/greeting.yml)
+    pedekate: $include(./flows/pedekate.yml)
 nlus: $include(./nlus/nlu.yml)
 methods: {}
 config:
