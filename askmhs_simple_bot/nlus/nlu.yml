@@ -1,0 +1,18 @@
+keywordNLU:
+    type: keyword
+    options:
+        keywords:
+            greeting:
+                - hi
+                - hai
+                - halo
+                - hallo
+                - coy
+                - cong
+                - rek
+            name:
+                - nama
+                - nama
+                - nama kamu
+                - nama siapa
+                - jeneng

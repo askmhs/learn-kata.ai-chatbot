@@ -7,10 +7,14 @@ intents:
     greeting:
         initial: true
         type: text
-        condition: "content == 'halo' || content == 'hi'"
+        classifier:
+            nlu: KeywordNLU
+            match: greeting
     profileName:
         type: text
-        condition: "content == 'nama kamu siapa?'"
+        classifier:
+            nlu: KeywordNLU
+            match: name
 states:
     init:
         initial: true
